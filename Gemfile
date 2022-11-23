@@ -45,26 +45,39 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+
+# Work with users
+gem "devise"
+gem "bulma-rails"
+
+# Background jobs with more perfomance
+gem "sidekiq"
+
+# Make forms ez
+gem "simple_form", "~> 5.1"
+gem "gravatar_image_tag", "~> 1.2"
+
+# Dependency for gravatar
+gem "carrierwave", ">= 3.0.0.beta", "< 4.0"
+gem "mini_magick"
+
+gem "stripe"
+
+# Rich Editor Text
+gem "trix"
+
+# Security with data on rails
+gem "figaro"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
-
-gem "devise"
-gem "bulma-rails"
-gem "sidekiq"
-gem "simple_form", "~> 5.1"
-gem "gravatar_image_tag", "~> 1.2"
-gem "carrierwave", ">= 3.0.0.beta", "< 4.0"
-gem "mini_magick"
-gem "stripe"
-gem "trix"
-gem "figaro"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
@@ -85,6 +98,7 @@ group :test do
 end
 
 group :development, :test do
+  # Help with development on rails
   gem "better_errors"
   gem "guard"
   gem "guard-livereload"
