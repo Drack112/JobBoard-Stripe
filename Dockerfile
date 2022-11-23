@@ -27,7 +27,8 @@ RUN apk add --update --no-cache \
     python3 \
     tzdata \
     yarn \
-    bash
+    bash \
+    imagemagick
 
 RUN gem install bundler -v ${BUNDLER_VERSION}
 
