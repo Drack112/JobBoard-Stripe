@@ -31,7 +31,7 @@ class JobsController < ApplicationController
     job_title = params[:title]
     card_brand = params[:user][:card_brand]
     card_exp_month = params[:user][:card_exp_month]
-    card_exp_year  = params[:user][:card_exp_year]
+    card_exp_year = params[:user][:card_exp_year]
     card_last4 = params[:user][:card_last4]
 
     charge = Stripe::Charge.create(
@@ -47,23 +47,20 @@ class JobsController < ApplicationController
     current_user.card_exp_month = card_exp_month
     current_user.card_exp_year = card_exp_year
     current_user.card_last4 = card_last4
-    current_user.save!
+    current_user.save
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to job_url(@job), notice: "Job was successfully created." }
+        format.html { redirect_to @job, notice: "Your job listing was purchased successfully!" }
         format.json { render :show, status: :created, location: @job }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        flash.alert = @job.errors.full_messages.join(", ")
+        format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
-
-
-    rescue Stripe::CardError => e
-      flas.alert = e.message
-      render action: :new
   end
+
 
   # PATCH/PUT /jobs/1 or /jobs/1.json
   def update
