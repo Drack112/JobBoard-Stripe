@@ -5,5 +5,4 @@ class Job < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   JOB_TYPES = ["Full Time", "Part Time", "Contract", "Freelancer"]
-
 end
