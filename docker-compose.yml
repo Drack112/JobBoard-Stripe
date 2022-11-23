@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  app:
+    container_name: "ruby-on-rails-blog"
+    entrypoint: ".docker/entrypoint.sh"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    networks:
+      - rails
+    volumes:
+      - .:/app
+    env_file: .env
+    environment:
+      RAILS_ENV: development
+
+  db:
+    build: .docker/postgres
+    container_name: database-rails-blog
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql/data
+      - ./.docker/postgres:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${DATABASE_USER}
+    env_file:
+      - ./.env
+    networks:
+      - rails
+
+networks:
+  rails:
+    driver: bridge
