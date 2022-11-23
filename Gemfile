@@ -64,6 +64,7 @@ gem "carrierwave", ">= 3.0.0.beta", "< 4.0"
 gem "mini_magick"
 gem "stripe"
 gem "trix"
+gem "figaro"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
