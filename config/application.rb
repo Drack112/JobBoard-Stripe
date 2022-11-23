@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -9,7 +11,7 @@ Bundler.require(*Rails.groups)
 module JobManager
   class Application < Rails::Application
     config.active_job.queue_adapter = :sidekiq
-    config.application_name = 'JobManager'
+    config.application_name = "JobManager"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 

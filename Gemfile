@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -56,12 +58,12 @@ end
 gem "devise"
 gem "bulma-rails"
 gem "sidekiq"
-gem 'simple_form', '~> 5.1'
-gem 'gravatar_image_tag', '~> 1.2'
-gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+gem "simple_form", "~> 5.1"
+gem "gravatar_image_tag", "~> 1.2"
+gem "carrierwave", ">= 3.0.0.beta", "< 4.0"
 gem "mini_magick"
 gem "stripe"
-gem 'trix'
+gem "trix"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
