@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    container_name: "ruby-on-rails-blog"
+    container_name: "ruby-on-rails-jobmanager"
     entrypoint: ".docker/entrypoint.sh"
     build:
       context: .
@@ -21,7 +21,7 @@ services:
 
   db:
     build: .docker/postgres
-    container_name: database-rails-blog
+    container_name: database-rails-jobmanager
     volumes:
       - ./.docker/dbdata:/var/lib/postgresql/data
       - ./.docker/postgres:/docker-entrypoint-initdb.d
