@@ -3,4 +3,11 @@ PreCommit:
     enabled: true
     on_warn: fail
     problem_on_unmodified_line: ignore
-    command: ["bundle", "exec", "rubocop"]
+    command:
+      [
+        "bundle",
+        "exec",
+        "rubocop",
+        "--auto-correct-all",
+        "--disable-uncorrectable",
+      ]
