@@ -1,6 +1,5 @@
-<%= simple_form_for(@job, html: {multipart: true}) do |f| %>
+<%= simple_form_for @job, html: { multipart: true } do |f| %>
 <%= f.error_notification %>
-<%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
 <div class="field">
   <div class="control">
@@ -94,6 +93,6 @@
 
 <hr />
 
-<%= render "payment" %>
+<%= render 'payment' %>
 <%= f.button :submit, class: "button is-primary is-large is-rounded mv4" %>
 <% end %>
