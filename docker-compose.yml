@@ -3,7 +3,7 @@ version: "3"
 services:
   app:
     container_name: "ruby-on-rails-jobmanager"
-    entrypoint: ".docker/entrypoint.sh"
+    entrypoint: "dockerize -wait tcp://db:5432 .docker/entrypoint.sh"
     build:
       context: .
       dockerfile: Dockerfile
@@ -24,19 +24,17 @@ services:
     container_name: database-rails-jobmanager
     volumes:
       - ./.docker/dbdata:/var/lib/postgresql/data
-      - ./.docker/postgres:/docker-entrypoint-initdb.d
     ports:
       - 5432:5432
+    expose:
+      - 5432
     environment:
-      - POSTGRES_DB={DATABASE_NAME}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_USER=${DATABASE_USER}
     env_file:
       - ./.env
     networks:
       - rails
-    extra_hosts:
-      - "host.docker.internal:172.17.0.1"
 
 networks:
   rails:
