@@ -61,6 +61,10 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - Você possui um `< Editor de código ou IDE / Gerenciador de banco de dados >`.
 
+## Serviços necessários antes de rodar a aplicação:
+
+Lembre-se de pegar as suas chaves de API nos serviços da API de pagamentos **[Stripe](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwijlrD54oX3AhUvQUgAHQb7CAsYABAAGgJjZQ&ohost=www.google.com&cid=CAASJeRopwqWu91WWsvPhM4UKeVdBrRdLP22hWD2ajMnUqih0kZrdnc&sig=AOD64_0Ww0E5pwd2EtlWshd1Y1RIipL_mg&q&adurl&ved=2ahUKEwiutan54oX3AhUNjZUCHaMFAqsQ0Qx6BAgDEAE).**
+
 ## ☕ Pequena ajuda
 
 Preencha o arquivo `.env.example` com as informações cobradas e depois renomeie para `.env`.
@@ -71,6 +75,36 @@ DATABASE_USER=
 DATABASE_PASSWORD=
 DATABASE_HOST=
 ```
+
+## Configurando o rails antes de iniciar :gear:
+
+Primeiro, instale todas as Gems que são cobradas no GemFile:
+
+```bash
+bundle install
+# se estiver configurado como produção
+bundle install --without development test
+```
+
+Agora, execute o comando abaixo para gerar o arquivo de configuração:
+
+```bash
+bundle exec figaro install
+```
+
+O arquivo será criado em `config/application.yml`, nesse arquivo siga o template abaixo para configurar as suas chaves de API
+
+```yml
+development:
+  stripe_api_key: SUA_CHAVE_SECRETA_DO_STRIPE
+  stripe_publishable_key: SUA_CHAVE_PUBLICA_DO_STRIPE
+
+production:
+  stripe_api_key: SUA_CHAVE_SECRETA_DO_STRIPE
+  stripe_publishable_key: SUA_CHAVE_PUBLICA_DO_STRIPE
+```
+
+Agora, você tem o arquivo necessário para fazer o rails rodar com suporte ao stripe 😻
 
 ### Se lembre de ter o Docker rodando :ocean:
 
