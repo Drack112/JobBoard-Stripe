@@ -1,0 +1,22 @@
+@import "bulma";
+@import "_functions.scss";
+@import "_jobs.scss";
+@import "_stripe.scss";
+
+.notification {
+  border-radius: 0;
+}
+
+.notification:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.hint {
+  font-size: small;
+}
+
+.tag {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 9px !important;
+}

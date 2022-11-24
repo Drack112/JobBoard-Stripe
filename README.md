@@ -86,6 +86,12 @@ bundle install
 bundle install --without development test
 ```
 
+Gere sua `master.key` para você não ter problemas de credenciais no rails:
+
+```bash
+rails credentials:edit
+```
+
 Agora, execute o comando abaixo para gerar o arquivo de configuração:
 
 ```bash
@@ -109,6 +115,8 @@ Agora, você tem o arquivo necessário para fazer o rails rodar com suporte ao s
 ### Se lembre de ter o Docker rodando :ocean:
 
 E então, rode o comando `docker-compose up --build -V`.
+
+Se você quiser rodar o container em ambiente de produção `docker-compose -f ./docker-compose.prod.yml up --build -V`
 
 Agora você pode acessar [localhost:3000](localhost:3000) do seu navegador.
 

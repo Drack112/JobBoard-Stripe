@@ -3,8 +3,8 @@ FROM ruby:3.1.2-alpine
 ENV BUNDLER_VERSION=2.3.26
 ENV DOCKERIZE_VERSION v0.6.1
 
-ENV RAILS_ENV='development'
-ENV RACK_ENV='development'
+ENV RAILS_ENV='production'
+ENV RACK_ENV='production'
 ENV RAILS_ROOT /var/www/jobManager
 
 RUN apk add --update --no-cache \
@@ -21,18 +21,16 @@ RUN apk add --update --no-cache \
     libffi-dev \
     libc-dev \
     linux-headers \
+    postgresql-dev \
     libxml2-dev \
     libxslt-dev \
     libgcrypt-dev \
-    postgresql-dev \
     make \
     netcat-openbsd \
     openssl \
     pkgconfig \
-    postgresql-dev \
     python3 \
     tzdata \
-    bash \
     imagemagick \
     nodejs \
     yarn
@@ -46,11 +44,13 @@ WORKDIR $RAILS_ROOT
 
 RUN gem install bundler -v ${BUNDLER_VERSION}
 
-COPY Gemfile Gemfile.lock $RAILS_ROOT/
+COPY Gemfile Gemfile.lock ${RAILS_ROOT}/
 
 RUN bundle config build.nokogiri --use-system-libraries
-RUN bundle check || bundle install --jobs 20 --retry 5
+RUN bundle check || bundle install --jobs 20 --retry 5 --without development test
 
-COPY . $RAILS_ROOT/
+COPY . ${RAILS_ROOT}/
+
+RUN rails assets:precompile
 
 EXPOSE 3000

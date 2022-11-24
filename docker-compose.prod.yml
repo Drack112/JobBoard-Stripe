@@ -2,11 +2,11 @@ version: "3"
 
 services:
   app:
-    container_name: "ruby-on-rails-dev-jobmanager"
-    entrypoint: "dockerize -wait tcp://db:5432 .docker/entrypoints/dev.sh"
+    container_name: "ruby-on-rails-prod-jobmanager"
+    entrypoint: "dockerize -wait tcp://db:5432 .docker/entrypoints/prod.sh"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     depends_on:
       - db
     ports:
@@ -21,7 +21,7 @@ services:
 
   db:
     build: .docker/postgres
-    container_name: database-rails-dev-jobmanager
+    container_name: database-rails-prod-jobmanager
     volumes:
       - ./.docker/dbdata:/var/lib/postgresql/data
     ports:
