@@ -28,6 +28,7 @@ services:
     ports:
       - 5432:5432
     environment:
+      - POSTGRES_DB={DATABASE_NAME}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_USER=${DATABASE_USER}
     env_file:
